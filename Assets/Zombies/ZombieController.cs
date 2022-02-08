@@ -8,11 +8,11 @@ public class ZombieController : MonoBehaviour
     Animator anim;
     public GameObject targetPlayer;
     NavMeshAgent enemyAgent;
-    
+
 
     enum STATE
     {
-        IDLE,WANDER,CHASE,ATTACK,DEAD
+        IDLE, WANDER, CHASE, ATTACK, DEAD
     };
     STATE state = STATE.IDLE;
 
@@ -35,7 +35,16 @@ public class ZombieController : MonoBehaviour
 
     bool ZombieCanSeePlayer()
     {
-        if(DistanceToPlayer()<10)
+        if (DistanceToPlayer() < 10)
+        {
+            return true;
+        }
+        return false;
+
+    }
+    bool ZombieCantSeePlayer()
+    {
+        if (DistanceToPlayer() > 10)
         {
             return true;
         }
@@ -51,11 +60,11 @@ public class ZombieController : MonoBehaviour
 
     // Update is called once per frame
     void Update()
-    { 
+    {
         switch (state)
         {
             case STATE.IDLE:
-                if(ZombieCanSeePlayer())
+                if (ZombieCanSeePlayer())
                 {
                     state = STATE.CHASE;
                 }
@@ -63,11 +72,11 @@ public class ZombieController : MonoBehaviour
                 {
                     state = STATE.WANDER;
                 }
-                
-                
+
+
                 break;
             case STATE.WANDER:
-                if(!enemyAgent.hasPath)
+                if (!enemyAgent.hasPath)
                 {
                     float newRandomPositionX = this.transform.position.x + Random.Range(-10, 10);
                     float newRandomPositionZ = this.transform.position.z + Random.Range(-10, 10);
@@ -78,23 +87,35 @@ public class ZombieController : MonoBehaviour
                     TurnOffAnimTriggers();
                     anim.SetBool("isWalking", true);
                 }
-                else if(ZombieCanSeePlayer())
+                else if (ZombieCanSeePlayer())
                 {
                     state = STATE.CHASE;
                 }
-                
+
                 break;
             case STATE.CHASE:
                 enemyAgent.SetDestination(targetPlayer.transform.position);
-                enemyAgent.stoppingDistance = 0.5f;
+                enemyAgent.stoppingDistance = 2.0f;
                 TurnOffAnimTriggers();
                 anim.SetBool("isRunning", true);
-                if(enemyAgent.remainingDistance<=enemyAgent.stoppingDistance )//&& !enemyAgent.pathPending)
+                if (enemyAgent.remainingDistance <= enemyAgent.stoppingDistance)//&& !enemyAgent.pathPending)
                 {
                     state = STATE.ATTACK;
                 }
+                if (ZombieCantSeePlayer())
+                {
+                    state = STATE.WANDER;
+                    enemyAgent.ResetPath();
+                }
                 break;
             case STATE.ATTACK:
+                TurnOffAnimTriggers();
+                anim.SetBool("isAttacking", true);
+                transform.LookAt(targetPlayer.transform.position);
+                if (DistanceToPlayer() > enemyAgent.stoppingDistance)
+                {
+                    state = STATE.CHASE;
+                }
                 break;
             case STATE.DEAD:
                 break;
