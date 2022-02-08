@@ -226,7 +226,7 @@ NavMeshAgent:
   m_Enabled: 1
   m_AgentTypeID: 0
   m_Radius: 0.5
-  m_Speed: 12
+  m_Speed: 1
   m_Acceleration: 8
   avoidancePriority: 50
   m_AngularSpeed: 120
@@ -248,7 +248,7 @@ NavMeshAgent:
   m_Enabled: 1
   m_AgentTypeID: 0
   m_Radius: 0.5
-  m_Speed: 15
+  m_Speed: 1
   m_Acceleration: 8
   avoidancePriority: 50
   m_AngularSpeed: 120
@@ -420,7 +420,7 @@ NavMeshAgent:
   m_Enabled: 1
   m_AgentTypeID: 0
   m_Radius: 0.5
-  m_Speed: 15
+  m_Speed: 1
   m_Acceleration: 8
   avoidancePriority: 50
   m_AngularSpeed: 120
@@ -442,7 +442,7 @@ NavMeshAgent:
   m_Enabled: 1
   m_AgentTypeID: 0
   m_Radius: 0.5
-  m_Speed: 6
+  m_Speed: 1
   m_Acceleration: 8
   avoidancePriority: 50
   m_AngularSpeed: 120
@@ -19627,6 +19627,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   targetPlayer: {fileID: 3031146261896237034}
+  walkingSpeed: 4
+  runingSpeed: 8
 --- !u!95 &2986969213505584798
 Animator:
   serializedVersion: 3
@@ -22233,6 +22235,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   targetPlayer: {fileID: 3031146261896237034}
+  walkingSpeed: 4
+  runingSpeed: 8
 --- !u!4 &3279677964214843730
 Transform:
   m_ObjectHideFlags: 0
@@ -30676,6 +30680,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   targetPlayer: {fileID: 3031146261896237034}
+  walkingSpeed: 4
+  runingSpeed: 8
 --- !u!4 &4862278277051452144
 Transform:
   m_ObjectHideFlags: 0
@@ -34431,6 +34437,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   targetPlayer: {fileID: 3031146261896237034}
+  walkingSpeed: 4
+  runingSpeed: 8
 --- !u!1 &5543102214878714217
 GameObject:
   m_ObjectHideFlags: 0

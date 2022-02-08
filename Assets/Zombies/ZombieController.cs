@@ -8,6 +8,8 @@ public class ZombieController : MonoBehaviour
     Animator anim;
     public GameObject targetPlayer;
     NavMeshAgent enemyAgent;
+    public float walkingSpeed;
+    public float runingSpeed;
 
 
     enum STATE
@@ -15,7 +17,6 @@ public class ZombieController : MonoBehaviour
         IDLE, WANDER, CHASE, ATTACK, DEAD
     };
     STATE state = STATE.IDLE;
-
 
     // Start is called before the first frame update
     void Start()
@@ -68,10 +69,11 @@ public class ZombieController : MonoBehaviour
                 {
                     state = STATE.CHASE;
                 }
-                else
+                else if (Random.Range(0, 100) < 5)
                 {
                     state = STATE.WANDER;
                 }
+
 
 
                 break;
@@ -83,13 +85,20 @@ public class ZombieController : MonoBehaviour
                     float newRandomPositionY = Terrain.activeTerrain.SampleHeight(new Vector3(newRandomPositionX, 0, newRandomPositionZ));
                     Vector3 finalDestination = new Vector3(newRandomPositionX, newRandomPositionY, newRandomPositionZ);
                     enemyAgent.SetDestination(finalDestination);
-                    enemyAgent.stoppingDistance = 0.0f;
+                    enemyAgent.stoppingDistance = 2.0f;
                     TurnOffAnimTriggers();
+                    enemyAgent.speed = walkingSpeed;
                     anim.SetBool("isWalking", true);
                 }
                 else if (ZombieCanSeePlayer())
                 {
                     state = STATE.CHASE;
+                }
+                else if (Random.Range(0, 100) < 5)
+                {
+                    state = STATE.WANDER;
+                    TurnOffAnimTriggers();
+                    enemyAgent.ResetPath();
                 }
 
                 break;
@@ -97,6 +106,7 @@ public class ZombieController : MonoBehaviour
                 enemyAgent.SetDestination(targetPlayer.transform.position);
                 enemyAgent.stoppingDistance = 2.0f;
                 TurnOffAnimTriggers();
+                enemyAgent.speed = runingSpeed;
                 anim.SetBool("isRunning", true);
                 if (enemyAgent.remainingDistance <= enemyAgent.stoppingDistance)//&& !enemyAgent.pathPending)
                 {
