@@ -21,6 +21,7 @@ public class ZombieController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        targetPlayer = GameObject.FindWithTag("Player");
         anim = this.GetComponent<Animator>();
         enemyAgent = GetComponent<NavMeshAgent>();
 
@@ -55,6 +56,7 @@ public class ZombieController : MonoBehaviour
 
     private float DistanceToPlayer()
     {
+        //float a = (targetPlayer.transform.position - this.transform.position).magnitude;//
         return Vector3.Distance(targetPlayer.transform.position, this.transform.position);
     }
 
@@ -108,7 +110,7 @@ public class ZombieController : MonoBehaviour
                 TurnOffAnimTriggers();
                 enemyAgent.speed = runingSpeed;
                 anim.SetBool("isRunning", true);
-                if (enemyAgent.remainingDistance <= enemyAgent.stoppingDistance)//&& !enemyAgent.pathPending)
+                if (enemyAgent.remainingDistance <= enemyAgent.stoppingDistance)// && !enemyAgent.pathPending)
                 {
                     state = STATE.ATTACK;
                 }
