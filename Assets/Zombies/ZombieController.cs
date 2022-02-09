@@ -21,7 +21,7 @@ public class ZombieController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        targetPlayer = GameObject.FindWithTag("Player");
+        targetPlayer = GameObject.FindGameObjectWithTag("Player");
         anim = this.GetComponent<Animator>();
         enemyAgent = GetComponent<NavMeshAgent>();
 
