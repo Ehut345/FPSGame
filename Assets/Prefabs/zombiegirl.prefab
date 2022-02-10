@@ -222,6 +222,7 @@ MonoBehaviour:
   targetPlayer: {fileID: 168188167426507024, guid: 65b340900ca01624c8c110d90d4d1380, type: 3}
   walkingSpeed: 4
   runingSpeed: 8
+  ZombieRagdollPrefab: {fileID: 5371184446067529146, guid: ce3c2e85e1010874397b180019a1941d, type: 3}
 --- !u!195 &7525932890345023367
 NavMeshAgent:
   m_ObjectHideFlags: 0
