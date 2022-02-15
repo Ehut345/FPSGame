@@ -1101,7 +1101,7 @@ GameObject:
   - component: {fileID: 5203167195156924285}
   m_Layer: 0
   m_Name: boss
-  m_TagString: Untagged
+  m_TagString: Zombie
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1156,6 +1156,7 @@ MonoBehaviour:
   targetPlayer: {fileID: 3031146262815649537, guid: 65b340900ca01624c8c110d90d4d1380, type: 3}
   walkingSpeed: 4
   runingSpeed: 8
+  ZombieRagdollPrefab: {fileID: 0}
 --- !u!195 &5203167195156924285
 NavMeshAgent:
   m_ObjectHideFlags: 0

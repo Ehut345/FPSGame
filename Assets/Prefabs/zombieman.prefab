@@ -381,7 +381,7 @@ GameObject:
   - component: {fileID: 6220375709355729025}
   m_Layer: 0
   m_Name: zombieman
-  m_TagString: Untagged
+  m_TagString: Zombie
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -433,10 +433,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eec9c05e03277468cac8631ea3ac0fd5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  targetPlayer: {fileID: 3031146262815649537, guid: 65b340900ca01624c8c110d90d4d1380, type: 3}
+  anim: {fileID: 0}
   walkingSpeed: 4
-  runingSpeed: 8
-  ZombieRagdollPrefab: {fileID: 8777504673704346007, guid: cc235dd90b448b14e813735399aa00f0, type: 3}
+  runningSpeed: 8
+  zombieRagdollPrefab: {fileID: 8777504673704346007, guid: cc235dd90b448b14e813735399aa00f0, type: 3}
+  distanceToZombie: 0
+  state: 0
 --- !u!195 &6220375709355729025
 NavMeshAgent:
   m_ObjectHideFlags: 0
